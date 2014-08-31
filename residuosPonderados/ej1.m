@@ -20,7 +20,7 @@ psi = pendiente*sym('x');
 
 %Metodo:
 K = zeros(M,M);
-f = zeros(1,M); %1 columna, M filas
+f = zeros(M,1); %1 columna, M filas
 
 for l=1:M
     for m = 1:M
@@ -31,7 +31,7 @@ for l=1:M
     f(l) = double(int(phi*Wl,'x',x_ini,x_fin) - int(Wl*psi,'x',x_ini,x_fin));
 end
 
-a = K\f';
+a = K\f;
 
 phi_aprox = psi;
 for m = 1:M
