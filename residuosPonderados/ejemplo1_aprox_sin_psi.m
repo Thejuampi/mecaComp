@@ -15,7 +15,7 @@
 
 clear all;close all;
 
-M = 2;
+M = 3;
 x_ini = 0;
 x_fin = 1;
 
@@ -28,7 +28,7 @@ N = sym('x^(m-1)');
 W = sym('x^(l-1)');
 
 %Tridente: (psi) no se usa
-%psi = sym('x');
+psi = sym('0');
 W_techito = -W;
 
 %Metodo:
@@ -47,7 +47,7 @@ for l=1:M
         K(l,m) = double(int(I,'x',x_ini,x_fin));
     end
     Wl = subs(W,{'l','x'},{l,x_fin});
-    f(l) = double(Wl);
+    f(l) = -double(Wl);
 end
 
 a = K\f;
