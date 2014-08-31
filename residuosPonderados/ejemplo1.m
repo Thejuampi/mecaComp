@@ -12,7 +12,7 @@
 
 clear all;close all;
 
-M = 9;
+M = 2;
 x_ini = 0;
 x_fin = 1;
 
@@ -33,11 +33,11 @@ Lpsi = diff(psi,'x',2) - psi;
 
 for l=1:M
     for m=1:M
-        I = subs(LN,{'l','m'},{l,m});
+        I = subs(W*LN,{'l','m'},{l,m});
         K(l,m) = double(int(I,'x',x_ini,x_fin));
     end
     Wl = subs(W,'l',l);
-    f(l) = double(int(Lpsi,'x',x_ini,x_fin));
+    f(l) = -double(int(Wl*Lpsi,'x',x_ini,x_fin));
 end
 
 a = K\f;
@@ -46,3 +46,10 @@ phi_aprox = psi;
 for m = 1:M
     phi_aprox = phi_aprox + subs(N,'m',m)*a(m);
 end
+
+dx = 0.05;
+x = x_ini:dx:x_fin-dx;
+%y1 = double(subs(phi,'x',x));
+y2 = double(subs(phi_aprox,'x',x));
+
+plot(x,y2,'.');
