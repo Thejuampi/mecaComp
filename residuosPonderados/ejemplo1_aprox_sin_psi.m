@@ -1,4 +1,5 @@
-%ejemplo 1 sin aproximando sin psi, usando galerkin
+%ejemplo 1 sin aproximando sin psi, usando galerkin: DEAD END, ver si es 
+% posible solucionarlo en otro momento, o consultar con profesor.
 
 % solucion del ejemplo dado en clase
 
@@ -19,9 +20,13 @@ x_ini = 0;
 x_fin = 1;
 
 %N[m](x):
-N = sym('sin(m*pi*x)');
+%N = sym('sin(m*pi*x)');
+N = sym('(x-x_ini)^m*(x-x_fin)');
+N = subs(N,{'x_ini','x_fin'},{x_ini,x_fin});
 %Galerkin:
-W = sym('sin(l*pi*x)');
+%W = sym('sin(l*pi*x)');
+W = sym('(x-x_ini)^l*(x-x_fin)');
+W = subs(W,{'x_ini','x_fin'},{x_ini,x_fin});
 %Tridente: (psi) no se usa
 %psi = sym('x');
 W_techito = -W;
@@ -32,15 +37,16 @@ f = zeros(M,1); %1 columna, M filas
 
 d2N = diff(N,'x',2);
 LN = d2N - N;
-Lpsi = diff(psi,'x',2) - psi;
+N0 = subs(N,'x',0); %por definicion N(borde) = 0, asi que esto es un dead end...
+N1 = subs(N,'x',1);
 
 for l=1:M
     for m=1:M
-        I = subs(W*LN,{'l','m'},{l,m});
+        I = subs(W*LN,{'l','m'},{l,m}) - subs(N0,'m',m)*subs(N0,'m',l) - subs(N1,'m',m)*subs(N1,'m',l);
         K(l,m) = double(int(I,'x',x_ini,x_fin));
     end
-    Wl = subs(W,'l',l);
-    f(l) = -double(int(Wl*Lpsi,'x',x_ini,x_fin));
+    Wl = subs(W,{'l','x'},{l,x_fin});
+    f(l) = double(Wl);
 end
 
 a = K\f;
