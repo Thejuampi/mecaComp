@@ -21,12 +21,12 @@ x_fin = 1;
 
 %N[m](x):
 %N = sym('sin(m*pi*x)');
-N = sym('(x-x_ini)^m*(x-x_fin)');
-N = subs(N,{'x_ini','x_fin'},{x_ini,x_fin});
+N = sym('x^(m-1)');
+
 %Galerkin:
 %W = sym('sin(l*pi*x)');
-W = sym('(x-x_ini)^l*(x-x_fin)');
-W = subs(W,{'x_ini','x_fin'},{x_ini,x_fin});
+W = sym('x^(l-1)');
+
 %Tridente: (psi) no se usa
 %psi = sym('x');
 W_techito = -W;
@@ -37,12 +37,13 @@ f = zeros(M,1); %1 columna, M filas
 
 d2N = diff(N,'x',2);
 LN = d2N - N;
-N0 = subs(N,'x',0); %por definicion N(borde) = 0, asi que esto es un dead end...
-N1 = subs(N,'x',1);
+
+%N0 = subs(N,'x',0);
+%N1 = subs(N,'x',1);
 
 for l=1:M
     for m=1:M
-        I = subs(W*LN,{'l','m'},{l,m}) - subs(N0,'m',m)*subs(N0,'m',l) - subs(N1,'m',m)*subs(N1,'m',l);
+        I = subs(W*LN,{'l','m'},{l,m}) - subs(N,{'m','x'},{m,x_ini})*subs(N,{'m','x'},{l,x_ini}) - subs(N,{'m','x'},{m,x_fin})*subs(N,{'m','x'},{l,x_fin});
         K(l,m) = double(int(I,'x',x_ini,x_fin));
     end
     Wl = subs(W,{'l','x'},{l,x_fin});
