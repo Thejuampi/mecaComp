@@ -8,7 +8,7 @@ x_fin = 1;
 N = sym('x^(m)');
 
 %W[l](x) - GALERKIN
-W = sym('x^(l)');
+W = subs(N,'m','l');
 
 %psi
 psi = sym('0');
