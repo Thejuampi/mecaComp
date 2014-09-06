@@ -3,15 +3,16 @@
 % las propiedades de simetria del problema en una siguiente iteracion
 
 clear all; close all;
-M = 5; %orden de aproximacion
+M = 6; %orden de aproximacion
 x_ini = -1; x_fin = 1;
 y_ini = -1; y_fin = 1;
-Q = 10;
+Q = 0;
 k = 1;
 
 %N[m](x)
-%N = sym('(x^m)*(y^m)');
-N = sym('cos(m*pi*x/2)*cos(m*pi*y/2)');
+N = sym('(x^(2*m))*(y^(2*m))'); 
+%N=sym('exp(m*x*y)'); no funca con esto
+%N = sym('cos(m*pi*x/2)*cos(m*pi*y/2)');
 
 %W[l](x) - GALERKIN
 W = subs(N,'m','l');
@@ -44,8 +45,8 @@ end
 
 a = K\f;
 
-Nx = 10;
-Ny = 10;
+Nx = 25;
+Ny = 25;
 
 Lx = x_fin-x_ini;
 Ly = y_fin-y_ini;
