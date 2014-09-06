@@ -40,7 +40,7 @@ for l = 1:M
         contorno = double(int(Wlx_i*subs(Nm,'x',x_ini), 'y',y_ini,y_fin) + int(Wlx_f*subs(Nm,'x',x_fin), 'y',y_ini,y_fin) + int(Wly_i*subs(Nm,'y',y_ini), 'x',x_ini,x_fin) + int(Wly_f*subs(Nm,'y',y_fin), 'x',x_ini,x_fin));
         K(l,m) = interior + contorno;
     end
-    f(l) = -(int(int(Wl*Q,'x',x_ini,x_fin),'y',y_ini,y_fin) + int(Wlx_i*(sym('y^2 -1')),'y',y_ini,y_fin) + int(Wlx_f*(sym('y^2 -1')),'y',y_ini,y_fin) + int(Wly_i*(sym('x^2 -1')),'x',x_ini,x_fin) + int(Wly_f*(sym('x^2 -1')),'x',x_ini,x_fin));
+    f(l) = int(int(Wl*Q,'x',x_ini,x_fin),'y',y_ini,y_fin) + int(Wlx_i*(sym('y^2 -1')),'y',y_ini,y_fin) + int(Wlx_f*(sym('y^2 -1')),'y',y_ini,y_fin) + int(Wly_i*(sym('x^2 -1')),'x',x_ini,x_fin) + int(Wly_f*(sym('x^2 -1')),'x',x_ini,x_fin);
 end
 
 a = K\f;
