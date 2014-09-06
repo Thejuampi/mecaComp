@@ -1,14 +1,14 @@
 %Ejercicio2 Guia 1 RP
 clear all; close all;
-M = 2; %orden de aproximacion
+M = 10; %orden de aproximacion
 x_ini = 0;
 x_fin = 1;
 
 %N[m](x)
-N = sym('x^(m-1)');
+N = sym('x^(m)');
 
 %W[l](x) - GALERKIN
-W = sym('x^(l-1)');
+W = sym('x^(l)');
 
 %psi
 psi = sym('0');
@@ -22,7 +22,7 @@ for l = 1:M
         Nm = subs(N,'m',m);
         LNm = diff(Nm,'x',1) + Nm;
         MNm = diff(Nm,'x',1) + Nm;
-        MNm = subs(MNm,'x',x_fin);
+        MNm = subs(Wl*MNm,'x',x_fin);
         K(l,m) = double(int(Wl*LNm,'x',x_ini,x_fin) + MNm);
     end
     f(l) = -double(int(Wl,'x',x_ini,x_fin));
