@@ -7,7 +7,7 @@ y_exp = [0 0 2 2 0 2 4 4 4 0 2 4 6 6 6 6 0 2 4 6 8 8 8 8 8];
 %sigue un patron facilemnte deducible si creen que es necesario mas
 %terminos.
 
-M = 2;
+M = 3;
 
 N = @(m,x,y) (1-y.^2).*x.^(x_exp(m)).*y.^(y_exp(m));
 %W = @(l,x,y) (1-y^2).*x.^(x_exp(l)).*y.^(y_exp(l));
