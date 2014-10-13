@@ -1,7 +1,7 @@
 %ejemplo 2.7, verificados los resultados con el libro.
 
-x_exp = [0 2 0 2 4 4 4 2 0 6 6 6 6 4 2 0 8 8 8 8 8 6 4 2 0];
-y_exp = [0 0 2 2 0 2 4 4 4 0 2 4 6 6 6 6 0 2 4 6 8 8 8 8 8]; 
+xe = [0 2 0 2 4 4 4 2 0 6 6 6 6 4 2 0 8 8 8 8 8 6 4 2 0];
+ye = [0 0 2 2 0 2 4 4 4 0 2 4 6 6 6 6 0 2 4 6 8 8 8 8 8]; 
 % hasta M = 25 se banca esto.
 %no quise seguir expandiendo mas, porque: 1. no lo creia necesario; 2.
 %sigue un patron facilemnte deducible si creen que es necesario mas
@@ -9,10 +9,10 @@ y_exp = [0 0 2 2 0 2 4 4 4 0 2 4 6 6 6 6 0 2 4 6 8 8 8 8 8];
 
 M = 3;
 
-N = @(m,x,y) (1-y.^2).*x.^(x_exp(m)).*y.^(y_exp(m));
+N = @(m,x,y) (1-y.^2).*x.^(xe(m)).*y.^(ye(m));
 %W = @(l,x,y) (1-y^2).*x.^(x_exp(l)).*y.^(y_exp(l));
-dNdx = @(m,x,y) x_exp(m)*x.^(x_exp(m)-1).*y.^y_exp(m).*(1-y.^2);
-dNdy = @(m,x,y) y_exp(m).*x.^(x_exp(m)).*y.^(y_exp(m)-1).*(1-y.^2)-2*x.^x_exp(m).*y.^(y_exp(m)+1);
+dNdx = @(m,x,y) xe(m)*x.^(xe(m)-1).*y.^ye(m).*(1-y.^2);
+dNdy = @(m,x,y) ye(m).*x.^(xe(m)).*y.^(ye(m)-1).*(1-y.^2)-2*x.^xe(m).*y.^(ye(m)+1);
 
 K = zeros(M,M);
 f = zeros(M,1);
