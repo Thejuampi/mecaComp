@@ -3,6 +3,8 @@
 % d2/dx2)*phi + (d2/dy2)*phi = -2*G*Theta
 % phi(contorno) = 0
 
+%PRUEBA
+
 syms ax ay x y
 
 
