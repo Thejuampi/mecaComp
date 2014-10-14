@@ -19,6 +19,10 @@ LNt = @(m) [diff(Ns(m,1),x,1), 0, diff(Ns(m,1),y,1); 0, diff(Ns(m,2),y,1), diff(
 E = 30/16;
 v = 0.25;
 
+tx = E*(1-y^2)/(1+v);
+ty = 0;
+t = [tx;ty];
+
 D = E/(1-v^2)*[1 v 0;v 1 0;0 0 (1-v)/2];
 
 K = zeros(6,6);
@@ -29,4 +33,12 @@ for l = 1:3
         Klm = LNt(l)*D*LN(m);
         K(2*(l-1)+1:2*(l-1)+2,2*(m-1)+1:2*(m-1)+2) = K(2*(l-1)+1:2*(l-1)+2,2*(m-1)+1:2*(m-1)+2) + int(int(Klm,y,0,1),x,0,1);
     end
+    Wx = N(l);
+    Wx = subs(Wx,x,1);
+    f(2*(l-1)+1:2*(l-1)+2) = int(Wx*t,y,0,1);
 end
+
+a = K\f;
+
+% este ejercicio esta hecho para el ort*, no voy a perder mas tiempo con
+% esto, si alguien lo puede hacer adnar, bievenido sea.
