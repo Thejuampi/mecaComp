@@ -17,7 +17,7 @@ LN = @(m) [diff(Ns(m,1),x,1), 0;0, diff(Ns(m,2),y,1);diff(Ns(m,1),y,1), diff(Ns(
 LNt = @(m) [diff(Ns(m,1),x,1), 0, diff(Ns(m,1),y,1); 0, diff(Ns(m,2),y,1), diff(Ns(m,2),x,1)];
 
 E = 30/16;
-v = 0.25;
+v = 1/4;
 
 tx = E*(1-y^2)/(1+v);
 ty = 0;
@@ -37,6 +37,12 @@ for l = 1:3
     Wx = subs(Wx,x,1);
     f(2*(l-1)+1:2*(l-1)+2) = int(Wx*t,y,0,1);
 end
+
+aux = f;
+f(1) = aux(1);
+f(2) = aux(3);
+f(3) = aux(5);
+f(4:end) = 0;
 
 a = K\f;
 
