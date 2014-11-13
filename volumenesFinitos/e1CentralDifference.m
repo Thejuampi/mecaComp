@@ -30,8 +30,9 @@ for j=2:cantElementos-1
    K(j,j-1) = velocidad/2-coefConductividad/deltaX;
    K(j,j)   = velocidad + 2 * coefConductividad / deltaX;
    K(j,j+1) = velocidad/2-coefConductividad/deltaX;
-   a(j) = fuente*deltaX;
 end
+
+a(2:cantElementos-1) = fuente*deltaX;
 
 K(cantElementos,cantElementos-1) =   velocidad/2 - coefConductividad/deltaX;
 K(cantElementos,cantElementos)   = 3*velocidad/2 + coefConductividad/deltaX;
