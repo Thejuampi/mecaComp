@@ -1,0 +1,37 @@
+BeginZE C:\Users\Juan\Desktop\ejercicio4.gid\ejercicio4.vv
+   x 106.43228149414062 135.26408386230469
+   y 224.55595397949219 211.90965270996094
+   z -14.166666984558105 13.166666984558105
+   e 11.666666984558105
+   v -0.16553553789219194 -0.20403418778462301 0.01608545466473657
+   r 0.96473275784438906
+   m 0.91622263193130493 0.036513488739728928 -0.39900234341621399 0 0.098586149513721466 0.94467848539352417 0.31283113360404968 0 0.38835150003433228 -0.32595908641815186 0.86193609237670898 0 0 0 0 1
+   c 120.4024658203125 215.90847778320312 0.5
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 0
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE C:\Users\Juan\Desktop\ejercicio4.gid\ejercicio4.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+

@@ -1,0 +1,31 @@
+%Ejercicio 1
+
+cantElementos   = 5;
+longitud        = 1;
+deltaX          = L/m;
+x               = 0:h:L;
+
+velocidad           = 100; %(100;0;0)
+coefConductividad   = 1; %escalar, constante
+fuente              = 1; %escalar, constante
+
+condBordeIzquierdoDirichlet  = 0;
+condBordeDerechoNeumann      = 1;
+
+
+K = zeros(cantElementos,cantElementos);
+a = zeros(cantElementos,1);
+
+%Primer Stencil
+% phi1·(3k/h-v/2) + phi2(v/2-k/h) = 2/h*condBordeIzquierdoDirichlet +
+% velocidad·condBordeIzquierdoDirichlet + f·deltaX;
+
+K(1,1) = 3*coefConductividad/h + velocidad/2;
+K(1,2) = velocidad/2 - coefConductividad/deltaX;
+a(1)   = fuente*deltaX - velocidad*condBordeIzquierdoDirichlet+condBordeIzquierdoDirichlet*2*coefConductividad/deltaX;
+
+for j=2:cantElementos-1
+   K(j,j-1) = velocidad/2-coefConductividad/deltaX;
+   K(j,j)   =
+   K(j,j+1) = velocidad/2
+end

@@ -1,0 +1,21 @@
+BOOK:3D
+NUMBER: 1 CONDITION: Surface_Boundary_conditions
+CONDTYPE: over surfaces
+CONDMESHTYPE: over face elements
+QUESTION: Type:#CB#(patch,wall,symmetryPlane,empty,wedge,cyclic)
+VALUE: Wall
+QUESTION: Name
+VALUE: Condition1
+STATE: HIDDEN
+TKWIDGET: OpenFoam::ComunicateWithGiD
+END CONDITION
+NUMBER: 2 CONDITION: Volume_Continuum
+CONDTYPE: over volumes
+CONDMESHTYPE: over body elements
+QUESTION: Type:#CB#(fluid,solid)
+VALUE: Fluid
+QUESTION: Name
+VALUE: Continuum1
+STATE: HIDDEN
+TKWIDGET: OpenFoam::ComunicateWithGiD
+END CONDITION
