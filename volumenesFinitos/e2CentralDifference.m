@@ -2,17 +2,17 @@
 
 clear all; close all;
 
-cantElementos   = 5;
+cantElementos   = 50;
 tiempoDesde     = 0;
-tiempoHasta     = 1.0;
-cantPasosTiempo = 5;
+tiempoHasta     = 0.1;
+cantPasosTiempo = 50;
 deltaT          = (tiempoHasta - tiempoDesde)/cantPasosTiempo;
 longitud        = 1;
 deltaX          = longitud/cantElementos;
 x               = 0:deltaX:longitud;
 t               = tiempoDesde:deltaT:tiempoHasta;
 
-velocidad           = 100; %(100;0;0)
+velocidad           = 1; %(100;0;0)
 coefConductividad   = 1; %escalar, constante
 fuente              = 1; %escalar, constante
 
@@ -44,6 +44,7 @@ a(cantElementos)                 = -condBordeDerechoNeumann*deltaX/4 + coefCondu
 
 phiActual = K\a;
 
+hold on;
 
 plot(x(2:end),phiActual);
 pause(0.15);
@@ -61,5 +62,3 @@ for n = 2:cantPasosTiempo
     phiAnterior = phiActual;
     pause(0.15);
 end
-
-
