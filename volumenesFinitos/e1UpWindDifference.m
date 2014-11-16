@@ -2,16 +2,16 @@
 
 clear all; close all;
 
-cantElementos   = 5;
+cantElementos   = 2000;
 longitud        = 1;
 deltaX          = longitud/cantElementos;
 x               = 0:deltaX:longitud;
 
-velocidad           = 100; %(100;0;0)
+velocidad           = 20; %(100;0;0)
 coefConductividad   = 1; %escalar, constante
 fuente              = 1; %escalar, constante
 
-condBordeIzquierdoDirichlet  = 0;
+condBordeIzquierdoDirichlet  = 25;
 condBordeDerechoNeumann      = 1;
 
 
